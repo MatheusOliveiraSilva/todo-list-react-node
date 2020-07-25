@@ -1,0 +1,16 @@
+{
+  "name": "todo-list-react-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server",
+    "eslint-config"
+  ],
+  "devDependencies": {
+    "@todo-list-react-node/eslint-config": "*"
+  },
+  "author": "Matheus Oliveira <matheus.oliveira.s@protonmail.com>",
+  "license": "MIT"
+}
