@@ -25,12 +25,16 @@ const deleteList = async (req, res) => {
 }
 
 const addTodo = async (req, res) => {
+	const { task } = req.body
+
 	const todoList = await TodoList.findById(req.params.id)
 
-	if (!req.body.task || req.body.task === '')
-		return res.status(404).send('Insert a valid task.')
+	if (!task || task === '') return res.status(404).send('Insert a valid task.')
 
-	todoList.tasks = [...todoList.tasks, req.body.task]
+	if (todoList.tasks.includes(task))
+		return res.status(404).send('This task already exist in the list.')
+
+	todoList.tasks = [...todoList.tasks, task]
 
 	await todoList.save()
 
@@ -50,4 +54,29 @@ const removeTodo = async (req, res) => {
 	res.send('Todo removed successfully.')
 }
 
-module.exports = { getAllList, createList, deleteList, addTodo, removeTodo }
+const renameTodo = async (req, res) => {
+	const todoList = await TodoList.findById(req.params.id)
+
+	if (!todoList.tasks.includes(req.body.oldName))
+		return res.status(404).send('This task does not exist in the list.')
+
+	if (todoList.tasks.includes(req.body.newName))
+		return res.status(404).send('The new task already exist in the list.')
+
+	const index = todoList.tasks.indexOf(req.body.oldName)
+
+	todoList.tasks.splice(index, 1, req.body.newName)
+
+	await todoList.save()
+
+	res.send('Task renamed successfully.')
+}
+
+module.exports = {
+	getAllList,
+	createList,
+	deleteList,
+	addTodo,
+	removeTodo,
+	renameTodo,
+}
