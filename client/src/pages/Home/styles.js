@@ -69,7 +69,7 @@ export const StyledHome = styled.div`
 			height: 55px;
 			display: flex;
 			align-items: center;
-			background-color: #5d8cce;
+			background-color: #6696d8;
 			border: none;
 			color: #fff;
 			border-radius: 8px 25px;
@@ -93,7 +93,7 @@ export const StyledHome = styled.div`
 			a {
 				width: 55px;
 				height: 100%;
-				background-color: #5086d3;
+				background-color: #5c8ed3;
 				border-bottom-right-radius: 8px;
 				border-top-right-radius: 25px;
 
