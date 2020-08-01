@@ -17,7 +17,7 @@ function Home() {
 							<a href=''>Hello!</a>
 						</li>
 						<li>
-							<a href=''>Log in</a>
+							<Link to='/login'>Log in</Link>
 						</li>
 					</ul>
 				</nav>
