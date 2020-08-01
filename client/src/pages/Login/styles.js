@@ -6,9 +6,14 @@ export const XButton = styled.div`
 	cursor: pointer;
 `
 
-export const ForgotPassword = styled.button`
+export const ForgotPassword = styled.div`
 	background-color: #fff;
 	margin-bottom: 18px;
+	color: #1f92ee;
+	font-size: 13.33333px;
+	font-weight: 500;
+	width: 100%;
+	text-align: center;
 `
 
 export const LoginButton = styled.button`
@@ -16,6 +21,9 @@ export const LoginButton = styled.button`
 	color: #fff;
 	height: 36px;
 	cursor: pointer;
+	width: 100%;
+	font-weight: 500;
+	border: none;
 `
 
 export const StyledLogin = styled.div`
@@ -62,14 +70,22 @@ export const StyledLogin = styled.div`
 			}
 
 			input {
-				height: 36px;
+				height: 40px;
+				/* border: 1px solid #838383; */
+				border: none;
+				outline: none;
+				background-color: #fbfbfb;
+				box-shadow: inset 0 0 3px #ccc;
+				box-sizing: border-box;
+				border-width: 0;
+				transition: border-width 0.4s;
+				padding: 0 6px;
+
+				&:focus {
+					border-width: 3px;
+					border-bottom: solid #1f92ee;
+				}
 			}
 		}
-	}
-
-	button {
-		width: 100%;
-		font-weight: 500;
-		border: none;
 	}
 `

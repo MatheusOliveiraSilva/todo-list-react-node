@@ -27,7 +27,9 @@ function Login() {
 					</div>
 				</fieldset>
 				<ForgotPassword>
-					<Link to='/'>Forgot Password?</Link>
+					<Link to='/' style={{ color: '#1f92ee' }}>
+						Forgot Password?
+					</Link>
 				</ForgotPassword>
 				<LoginButton type='submit'>Login</LoginButton>
 			</form>
