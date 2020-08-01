@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import bg from './../../assets/todo_list.svg'
 
 export const StyledHome = styled.div`
 	padding: 0 35px;
@@ -7,6 +8,8 @@ export const StyledHome = styled.div`
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+	background: url(${bg}) no-repeat 52vw;
+	background-size: 600px;
 
 	header {
 		display: flex;
