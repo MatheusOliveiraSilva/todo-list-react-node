@@ -19,7 +19,13 @@ function Login() {
 
 					<div>
 						<label htmlFor='username'>Username</label>
-						<input type='text' name='' id='username' />
+						<input
+							type='text'
+							name=''
+							id='username'
+							autoComplete='no'
+							autoFocus
+						/>
 					</div>
 					<div>
 						<label htmlFor='password'>Password</label>
