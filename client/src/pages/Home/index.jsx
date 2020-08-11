@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowRight } from 'react-icons/fi'
 
-import { StyledHome } from './styles'
+import { StyledHome, CreateAccountButton } from './styles'
 
 function Home() {
 	const sourceProject =
@@ -22,7 +22,9 @@ function Home() {
 					</ul>
 				</nav>
 
-				<button>Create Account</button>
+				<CreateAccountButton to='/create-account'>
+					Create Account
+				</CreateAccountButton>
 			</header>
 
 			<main>
