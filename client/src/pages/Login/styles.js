@@ -1,20 +1,6 @@
 import styled from 'styled-components'
 
-export const XButton = styled.div`
-	position: absolute;
-	right: 15px;
-	cursor: pointer;
-`
-
-export const ForgotPassword = styled.div`
-	background-color: #fff;
-	margin-bottom: 18px;
-	color: #1f92ee;
-	font-size: 13.33333px;
-	font-weight: 500;
-	width: 100%;
-	text-align: center;
-`
+export const XButton = styled.div``
 
 export const LoginButton = styled.button`
 	background-color: #1f92ee;
@@ -28,7 +14,7 @@ export const LoginButton = styled.button`
 `
 
 export const StyledLogin = styled.div`
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	background-color: #f3f3f3;
 	display: flex;
@@ -36,57 +22,30 @@ export const StyledLogin = styled.div`
 	justify-content: center;
 
 	form {
-		width: 400px;
-		height: 75%;
+		width: 34%;
 		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
 		background-color: #fff;
 		border-radius: 7px;
-		padding: 1em 1.6em;
+		padding: 1em 1.6em 3.7em;
 		box-sizing: border-box;
 		position: relative;
-	}
 
-	fieldset {
-		margin-top: 40px;
-		margin-bottom: 30px;
-		border: 0;
-		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-		legend {
+		fieldset {
+			margin-top: 40px;
+			margin-bottom: 30px;
+			padding: 0;
 			width: 100%;
-			text-align: center;
-			font-weight: 300;
-			font-size: 1.5rem;
-			margin-bottom: 1.8em;
-		}
 
-		div {
-			display: flex;
-			flex-direction: column;
-			margin-bottom: 20px;
-
-			label {
-				margin-bottom: 7px;
-				font-size: 0.9rem;
-			}
-
-			input {
-				height: 43px;
-				/* border: 1px solid #838383; */
-				border: none;
-				outline: none;
-				background-color: #f3f3f3;
-				box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
-				box-sizing: border-box;
-				border-width: 0;
-				transition: border-width 0.4s;
-				padding: 0 6px;
-				border-radius: 3px;
-
-				&:focus {
-					border-width: 3px;
-					border-bottom: solid #1f92ee;
-				}
+			legend {
+				width: 100%;
+				text-align: center;
+				font-weight: 300;
+				font-size: 1.5rem;
+				margin-bottom: 1.8em;
 			}
 		}
 	}

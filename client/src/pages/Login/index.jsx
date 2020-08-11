@@ -1,43 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FiX } from 'react-icons/fi'
 
-import { StyledLogin, ForgotPassword, LoginButton, XButton } from './styles'
+import Input from '../../components/Input'
+import Redirect from '../../components/Redirect'
+import Button from '../../components/Button'
+import ButtonX from '../../components/ButtonX'
+
+import { StyledLogin, LoginButton, XButton } from './styles'
 
 function Login() {
 	return (
 		<StyledLogin>
 			<form>
-				<Link to='/'>
-					<XButton>
-						<FiX size='1.5em' />
-					</XButton>
-				</Link>
+				<ButtonX route='/' />
 
 				<fieldset>
 					<legend>Login to Continue</legend>
 
-					<div>
-						<label htmlFor='username'>Username</label>
-						<input
-							type='text'
-							name=''
-							id='username'
-							autoComplete='no'
-							autoFocus
-						/>
-					</div>
-					<div>
-						<label htmlFor='password'>Password</label>
-						<input type='password' name='' id='password' />
-					</div>
+					<Input label='Username' name='username' autoComplete='no' autoFocus />
+					<Input label='Password' name='password' type='password' />
 				</fieldset>
-				<ForgotPassword>
-					<Link to='/' style={{ color: '#1f92ee' }}>
-						Forgot Password?
-					</Link>
-				</ForgotPassword>
-				<LoginButton type='submit'>Login</LoginButton>
+
+				<Redirect route='/' label='Forgot Password?' />
+
+				<Button type='submit'>Login</Button>
 			</form>
 		</StyledLogin>
 	)
