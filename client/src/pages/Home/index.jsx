@@ -1,31 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { FiArrowRight } from 'react-icons/fi'
 
-import { StyledHome, CreateAccountButton } from './styles'
+import PageHeader from '../../components/PageHeader'
+
+import { StyledHome } from './styles'
+
+export const sourceProject =
+	'https://github.com/MatheusOliveiraSilva/todo-list-react-node'
 
 function Home() {
-	const sourceProject =
-		'https://github.com/MatheusOliveiraSilva/todo-list-react-node'
-
 	return (
 		<StyledHome>
-			<header>
-				<nav>
-					<ul>
-						<li>
-							<a href=''>Hello!</a>
-						</li>
-						<li>
-							<Link to='/login'>Log in</Link>
-						</li>
-					</ul>
-				</nav>
-
-				<CreateAccountButton to='/create-account'>
-					Create Account
-				</CreateAccountButton>
-			</header>
+			<PageHeader />
 
 			<main>
 				<h1>Todo list App</h1>
