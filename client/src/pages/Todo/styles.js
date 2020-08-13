@@ -8,6 +8,7 @@ export const StyledTodo = styled.div`
 		font-size: 2rem;
 		padding: 0.8em 0;
 		text-align: center;
+		font-weight: 300;
 	}
 
 	main {
