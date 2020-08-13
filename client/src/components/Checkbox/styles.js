@@ -23,9 +23,11 @@ export const StyledCheckbox = styled.div`
 	display: flex;
 	width: 32px;
 	height: 32px;
-	background: ${props => (props.checked ? 'salmon' : 'papayawhip')};
+	background: ${props => (props.checked ? '#65D575' : '#fff')};
 	border-radius: 50%;
 	transition: all 150ms;
+	box-shadow: 1.5px 1.5px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 
 	align-items: center;
 	justify-content: center;
