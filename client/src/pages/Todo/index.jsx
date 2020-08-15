@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from './../../services/api'
 
 import TodoItem from '../../components/TodoItem'
@@ -8,6 +8,10 @@ import { StyledTodo } from './styles'
 
 function Todo() {
 	const [lists, setLists] = useState([])
+
+	useEffect(() => {
+		api.get('/todo').then(response => console.log(response))
+	}, [])
 
 	return (
 		<StyledTodo>
