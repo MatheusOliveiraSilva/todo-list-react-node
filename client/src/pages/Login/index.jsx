@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import api from './../../services/api'
 
 import Input from '../../components/Input'
-import Redirect from '../../components/Redirect'
+import RedirectButton from '../../components/RedirectButton'
 import Button from '../../components/Button'
 import ButtonX from '../../components/ButtonX'
 
@@ -18,6 +18,7 @@ function Login() {
 	const [password, setPassword] = useState('')
 
 	function handleLogin(e) {
+		// authentication in react to use Redirect
 		e.preventDefault()
 
 		api
@@ -25,9 +26,7 @@ function Login() {
 				username,
 				password,
 			})
-			.then(() => {
-				history.push('/todos')
-			})
+			.then(() => console.log('Logged'))
 			.catch(() => {
 				alert('Something was wrong!')
 			})
@@ -58,7 +57,7 @@ function Login() {
 					/>
 				</fieldset>
 
-				<Redirect route='/' label='Forgot Password?' />
+				<RedirectButton route='/' label='Forgot Password?' />
 
 				<Button type='submit'>Login</Button>
 			</form>

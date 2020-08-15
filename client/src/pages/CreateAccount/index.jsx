@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import api from './../../services/api'
 
 import Input from '../../components/Input'
-import Redirect from '../../components/Redirect/index.jsx'
+import RedirectButton from '../../components/RedirectButton/index.jsx'
 import Button from '../../components/Button/index.jsx'
 import ButtonX from '../../components/ButtonX/index.jsx'
 
@@ -70,7 +70,7 @@ function CreateAccount() {
 					/>
 				</fieldset>
 
-				<Redirect route='/login' label='Already has a account? Log in' />
+				<RedirectButton route='/login' label='Already has a account? Log in' />
 
 				<Button type='submit'>Create a Account</Button>
 			</form>
