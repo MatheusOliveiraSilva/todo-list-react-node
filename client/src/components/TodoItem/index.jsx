@@ -13,7 +13,7 @@ function TodoItem({ label, ...rest }) {
 
 	return (
 		<StyledTodoItem>
-			<Text>Label text</Text>
+			<Text>{label}</Text>
 
 			<label>
 				<Checkbox checked={checked} onChange={handleCheckBoxChange} {...rest} />
