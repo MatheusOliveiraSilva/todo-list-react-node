@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
+const cors = require('cors')
 
 const todo = require('./routes/todo')
 const user = require('./routes/user')
@@ -11,6 +12,8 @@ if (!config.get('jwtPrivateKey')) {
 	console.error('FATAL ERROR: jwtPrivateKey is not defined.')
 	process.exit(1)
 }
+
+app.use(cors())
 
 app.use(express.json())
 
