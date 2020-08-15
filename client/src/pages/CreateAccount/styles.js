@@ -28,7 +28,7 @@ export const StyledCreateAccount = styled.div`
 	}
 
 	form {
-		width: 34%;
+		width: 420px;
 		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
 		background-color: #fff;
 		border-radius: 7px;
