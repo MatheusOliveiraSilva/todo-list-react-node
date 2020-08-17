@@ -62,7 +62,7 @@ const register = async (req, res) => {
 
 		const token = user.generateAuthToken()
 
-		res.header('x-auth-token', token).send('User created successfully.')
+		res.header('Authorization', token).send('User created successfully.')
 	} catch (err) {
 		res.send(err)
 	}
