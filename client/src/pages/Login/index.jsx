@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
-import { useHistory, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 import api from './../../services/api'
+import { login } from './../../services/auth'
 
 import Input from '../../components/Input'
 import RedirectButton from '../../components/RedirectButton'
@@ -9,27 +12,30 @@ import ButtonX from '../../components/ButtonX'
 
 import { StyledLogin } from './styles'
 
-function Login() {
+function Login(props) {
 	// ursobear
 	// --> authorization routes react
-	const history = useHistory()
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
-	function handleLogin(e) {
+	async function handleLogin(e) {
 		// authentication in react to use Redirect
 		e.preventDefault()
 
-		api
-			.post('user/authenticate', {
+		try {
+			const response = await api.post('user/authenticate', {
 				username,
 				password,
 			})
-			.then(() => console.log('Logged'))
-			.catch(() => {
-				alert('Something was wrong!')
-			})
+
+			login(response.data.token)
+
+			props.history.push('/app')
+			console.log('Logged')
+		} catch (err) {
+			alert(err)
+		}
 	}
 
 	return (
@@ -65,4 +71,8 @@ function Login() {
 	)
 }
 
-export default Login
+Login.propTypes = {
+	history: PropTypes.object.isRequired,
+}
+
+export default withRouter(Login)
