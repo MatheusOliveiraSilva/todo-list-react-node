@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import api from './../../services/api'
 
 import Input from '../../components/Input'
@@ -8,26 +10,25 @@ import ButtonX from '../../components/ButtonX/index.jsx'
 
 import { StyledCreateAccount, DoubleInputBlock } from './styles.js'
 
-function CreateAccount() {
+function CreateAccount(props) {
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
-	function handleCreateAccount(e) {
+	async function handleCreateAccount(e) {
 		e.preventDefault()
 
-		api
-			.post('user/register', {
+		try {
+			await api.post('user/register', {
 				username,
 				password,
 			})
-			.then(() => {
-				alert('Cadastro realizado com sucesso!')
-			})
-			.catch(() => {
-				alert('Erro no cadastro!')
-			})
+
+			props.history.push('/')
+		} catch (err) {
+			alert(err)
+		}
 	}
 
 	return (
@@ -78,4 +79,8 @@ function CreateAccount() {
 	)
 }
 
-export default CreateAccount
+CreateAccount.propTypes = {
+	history: PropTypes.object.isRequired,
+}
+
+export default withRouter(CreateAccount)
