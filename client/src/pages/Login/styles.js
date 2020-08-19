@@ -1,17 +1,6 @@
 import styled from 'styled-components'
 
-export const XButton = styled.div``
-
-export const LoginButton = styled.button`
-	background-color: #1f92ee;
-	color: #fff;
-	height: 36px;
-	cursor: pointer;
-	width: 100%;
-	font-weight: 500;
-	border: none;
-	border-radius: 3px;
-`
+// export const XButton = styled.div``
 
 export const StyledLogin = styled.div`
 	width: 100vw;
@@ -22,7 +11,7 @@ export const StyledLogin = styled.div`
 	justify-content: center;
 
 	form {
-		width: 34%;
+		width: 420px;
 		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
 		background-color: #fff;
 		border-radius: 7px;
