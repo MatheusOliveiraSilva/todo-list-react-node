@@ -1,12 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function TodoList({ children }) {
-	return <div>{children}</div>
+import { StyledTodoList } from './styles'
+
+function TodoList({ children, name }) {
+	return (
+		<StyledTodoList>
+			<h2>{name}</h2>
+			<div>{children}</div>
+		</StyledTodoList>
+	)
 }
 
 TodoList.propTypes = {
 	children: PropTypes.node,
+	name: PropTypes.string.isRequired,
 }
 
 export default TodoList
