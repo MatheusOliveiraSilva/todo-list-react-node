@@ -20,7 +20,6 @@ function Login(props) {
 	const [password, setPassword] = useState('')
 
 	async function handleLogin(e) {
-		// authentication in react to use Redirect
 		e.preventDefault()
 
 		try {
@@ -28,8 +27,10 @@ function Login(props) {
 				username,
 				password,
 			})
+			// retirar hash from response
+			const { token } = response.data
 
-			login(response.data.token)
+			login(token, { username })
 
 			props.history.push('/app')
 			console.log('Logged')
