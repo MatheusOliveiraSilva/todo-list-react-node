@@ -10,6 +10,7 @@ export const StyledTodoItem = styled.div`
 	height: 50px;
 	box-sizing: border-box;
 	transition: box-shadow 0.3s;
+	background-color: #fff;
 
 	&:hover {
 		box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
