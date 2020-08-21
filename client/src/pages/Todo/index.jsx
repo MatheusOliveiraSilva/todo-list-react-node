@@ -1,20 +1,32 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
-import { FiPlus } from 'react-icons/fi'
-import api from './../../services/api'
+import { FiPlus, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+
+import api from './../../services/api'
 
 import TodoItem from '../../components/TodoItem'
 import TodoList from '../../components/TodoList'
 
-import { StyledTodo, Message, BackButton } from './styles'
+import {
+	StyledTodo,
+	Message,
+	BackButton,
+	AddButton,
+	BoxWithArrow,
+} from './styles'
 
 import { getUser } from './../../services/auth'
-import Button from '../../components/Button'
 
 function Todo() {
 	const [lists, setLists] = useState([])
 	const [user, setUser] = useState({})
+	const [viewBox, setViewBox] = useState(false)
+	const [listName, setListName] = useState('')
+	const [listCreated, setListCreated] = useState(false)
+
+	function handleViewBox() {
+		setViewBox(!viewBox)
+	}
 
 	useEffect(() => {
 		api.get('/todo').then(response => {
@@ -22,17 +34,20 @@ function Todo() {
 			console.log(response.data)
 			setUser(JSON.parse(getUser()))
 		})
-	}, [])
+	}, [listCreated])
 
-	async function handleNewList() {
-		// dropdown with input in
+	async function handleNewList(e) {
+		e.preventDefault()
 
 		try {
-			await api.post('/todo', { name })
+			await api.post('/todo', { name: listName })
+			setListCreated(true)
+			setListName('')
+			alert('List created with success!')
+			handleViewBox()
 		} catch (err) {
 			alert(err)
 		}
-
 	}
 
 	return (
@@ -42,15 +57,26 @@ function Todo() {
 					<BackButton strokeWidth='1.5px' />
 				</Link>
 
-				<div>
-					Hello {user.username ? user.username : 'User'}
-				</div>
+				<div>Hello {user.username ? user.username : 'User'}</div>
 
 				<div>
-					<Button>
+					<AddButton onClick={handleViewBox}>
 						<FiPlus size='1.3em' strokeWidth='2.5px' />
 						New list
-					</Button>
+					</AddButton>
+
+					<BoxWithArrow visibility={viewBox ? 1 : 0}>
+						<form onSubmit={handleNewList}>
+							<input
+								type='text'
+								value={listName}
+								onChange={e => setListName(e.target.value)}
+							/>
+							<button type='submit'>
+								<FiChevronRight size='1.75em' />
+							</button>
+						</form>
+					</BoxWithArrow>
 				</div>
 			</header>
 
