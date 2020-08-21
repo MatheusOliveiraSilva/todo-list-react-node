@@ -5,5 +5,5 @@ export const StyledTodoList = styled.div`
 		font-weight: 300;
 	}
 
-	margin-bottom: 3em;
+	padding-bottom: 3em;
 `
