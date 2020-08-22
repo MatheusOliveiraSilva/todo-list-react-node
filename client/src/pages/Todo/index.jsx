@@ -82,7 +82,7 @@ function Todo() {
 
 			<main>
 				{lists.map(list => (
-					<TodoList key={list._id} name={list.name}>
+					<TodoList key={list._id} id={list._id} name={list.name}>
 						{list.tasks.length === 0 ? (
 							<Message>Empty list</Message>
 						) : (
