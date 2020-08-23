@@ -18,7 +18,6 @@ Esse é uma aplicação web para testar os últimos conteúdos estudados e desaf
 </h3>
 
 ## :point_right: Tabela de conteúdos
-=================
    * [Tecnologias](#tecnologias)
    * [Como usar](#como-usar)
       * [Pré-Requisitos](#pre-requisitos)
@@ -72,7 +71,6 @@ $ yarn dev
 
 # O servidor iniciará na porta 9000
 ```
-<br>
 
 <h3 id='frontend'> :point_right: Rodando no Front End (Cliente)</h3>
 
@@ -94,7 +92,6 @@ $ yarn start
 
 # O servidor iniciará na porta 4000
 ```
-<br>
 
 <h2 id='screenshot'> :point_right: Screenshots</h2>
 
