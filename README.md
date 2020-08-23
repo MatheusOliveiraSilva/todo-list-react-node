@@ -11,15 +11,17 @@
 Esse é uma aplicação web para testar os últimos conteúdos estudados e desafiar novos limites.
 </p>
 
-<h3 align='center'>Projeto em Desenvolvimento 
-:construction:
- </h3>
+<h3 align='center'>
+	:construction: 
+	Projeto em Desenvolvimento 
+	:construction:
+</h3>
 
 ## :point_right: Tabela de conteúdos
 =================
    * [Tecnologias](#tecnologias)
    * [Como usar](#como-usar)
-      * [Pre Requisitos](#pre-requisitos)
+      * [Pré-Requisitos](#pre-requisitos)
       * [Rodando o Back End](#backend)
       * [Rodando o Front End](#frontend)
    * [Screenshots](#screenshots)
