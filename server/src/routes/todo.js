@@ -5,7 +5,7 @@ const controller = require('./../todo/todo.controller')
 
 const router = express.Router()
 
-router.get('/', auth, controller.getAllList)
+router.get('/', auth, controller.getAllLists)
 router.post('/', auth, controller.createList)
 router.put('/add/:id', auth, controller.addTodo)
 router.put('/remove/:id', auth, controller.removeTodo)
