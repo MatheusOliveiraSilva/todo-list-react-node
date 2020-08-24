@@ -28,7 +28,7 @@ function Routes() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route component={Home} path='/' exact />
+				<Route component={isAuthenticated() ? Todo : Home} path='/' exact />
 				<Route component={Login} path='/login' />
 				<Route component={CreateAccount} path='/create-account' />
 				<Route component={Hello} path='/hello' />
