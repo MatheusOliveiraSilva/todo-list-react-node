@@ -24,11 +24,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	/>
 )
 
+const RedirectRoute = ({ component: Component, ...rest }) => (
+	<Route
+		{...rest}
+		render={props =>
+			isAuthenticated() ? (
+				<Redirect to={{ pathname: '/app', state: { from: props.location } }} />
+			) : (
+					<Component {...props} />
+				)
+		}
+	/>
+)
+
 function Routes() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route component={isAuthenticated() ? Todo : Home} path='/' exact />
+				<RedirectRoute component={Home} path='/' exact />
 				<Route component={Login} path='/login' />
 				<Route component={CreateAccount} path='/create-account' />
 				<Route component={Hello} path='/hello' />
@@ -39,6 +52,11 @@ function Routes() {
 }
 
 PrivateRoute.propTypes = {
+	component: PropTypes.func.isRequired,
+	location: PropTypes.object,
+}
+
+RedirectRoute.propTypes = {
 	component: PropTypes.func.isRequired,
 	location: PropTypes.object,
 }
