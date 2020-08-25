@@ -1,52 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi'
-import api from './../../services/api'
 
 import {
 	StyledTodoList,
 	TodoListHeader,
 	ButtonAction,
 	ButtonGroup,
-	TodoListForm,
 	Content,
 } from './styles'
 
-function TodoList({ children, name, id }) {
-	const [inputStatus, setInputStatus] = useState(false)
-
-	function handleInputString() {
-		setInputStatus(!inputStatus)
-	}
-
-	async function handleAddTask() {
-		api.put(`/todo/rename/${id}`, { task: something })
-		// how get the ID
-	}
+function TodoList({ children, name, id, handlers }) {
+	const { handleViewTaskForm, handleDeleteList } = handlers
 
 	return (
 		<StyledTodoList>
 			<TodoListHeader>
 				<h2>{name}</h2>
 				<ButtonGroup>
-					<ButtonAction onClick={handleInputString}>
-						<FiPlus size='1.5em' />
-					</ButtonAction>
-
-					<ButtonAction onClick={handleInputString}>
-						<FiEdit size='1.5em' />
+					<ButtonAction>
+						<FiPlus
+							size='1.5em'
+							onClick={() => handleViewTaskForm(id, 'todo')}
+						/>
 					</ButtonAction>
 
 					<ButtonAction>
-						<FiTrash2 size='1.5em' />
+						<FiEdit
+							size='1.5em'
+							onClick={() => handleViewTaskForm(id, 'list')}
+						/>
+					</ButtonAction>
+
+					<ButtonAction>
+						<FiTrash2 size='1.5em' onClick={() => handleDeleteList(id)} />
 					</ButtonAction>
 				</ButtonGroup>
 			</TodoListHeader>
-			<TodoListForm showInput={inputStatus ? 1 : 0}>
-				<input type='text' />
-				<button type='submit'></button>
-				{/* TWO INPUTS */}
-			</TodoListForm>
 			<Content>{children}</Content>
 		</StyledTodoList>
 	)
@@ -56,6 +46,7 @@ TodoList.propTypes = {
 	children: PropTypes.node,
 	name: PropTypes.string.isRequired,
 	id: PropTypes.string,
+	handlers: PropTypes.object,
 }
 
 export default TodoList
