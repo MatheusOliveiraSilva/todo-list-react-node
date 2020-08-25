@@ -28,7 +28,6 @@ const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true,
-	useFindAndModify: true,
 }
 
 mongoose.connect('mongodb://localhost/todo-list-react-node', options)
