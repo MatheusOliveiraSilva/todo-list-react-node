@@ -52,7 +52,7 @@ Você vai precisar ter instalado em sua máquina as seguintes ferramentas: [Git]
 
 ```bash
 # Clone este repositório
-$ git clone 
+$ git clone https://github.com/MatheusOliveiraSilva/todo-list-react-node.git
 
 # Acesse a pasto do projeto no terminal/cmd
 $ cd todo-list-react-node
@@ -76,7 +76,7 @@ $ yarn dev
 
 ```bash
 # Clone este repositório
-$ git clone 
+$ git clone https://github.com/MatheusOliveiraSilva/todo-list-react-node.git
 
 # Acesse a pasto do projeto no terminal/cmd
 $ cd todo-list-react-node
