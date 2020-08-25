@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
-import { FiArrowLeft } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 
-export const BackButton = styled(FiArrowLeft)`
+export const BackButton = styled(FiArrowRight)`
 	cursor: pointer;
 	color: #4f5165;
 	transition: color 0.3s;
 
 	&:hover {
-		/* color: #646e78; */
 		color: #aea3b0;
 	}
 `
@@ -148,24 +147,26 @@ export const StyledTodo = styled.div`
 	background-color: #f3f3f3;
 
 	header {
-		box-sizing: border-box;
-		font-size: 2rem;
-		padding: 0.8em 1em;
-		text-align: center;
-		display: grid;
-		grid-template-rows: auto;
-		grid-template-columns: 1fr 3fr 1fr;
+		& > div {
+			box-sizing: border-box;
+			font-size: 2rem;
+			padding: 0.8em 1em;
+			text-align: center;
+			display: grid;
+			grid-template-rows: auto;
+			grid-template-columns: 1fr 3fr 1fr;
 
-		div:first-child {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-		}
+			div:first-child {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+			}
 
-		div:last-child {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
+			div:last-child {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+			}
 		}
 	}
 
@@ -174,5 +175,62 @@ export const StyledTodo = styled.div`
 		margin: 3em auto 0;
 
 		color: #293132;
+	}
+`
+
+export const TaskForm = styled.form`
+	width: 75%;
+	margin-right: auto;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transform: ${props =>
+		props.view ? 'translateY(10px)' : 'translateY(-200px)'};
+
+	transition: transform 0.5s;
+
+	input {
+		width: 70%;
+		height: 33px;
+		padding: 0 8px;
+		margin-right: 15px;
+		font-size: 1rem;
+		font-family: 'Ubuntu', sans-serif;
+		outline: 0;
+		transition: border-color 0.3s;
+		box-sizing: border-box;
+		border-radius: 3px;
+		border: 1px solid #aba7a7;
+
+		&:focus {
+			border-color: #333;
+		}
+	}
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 32px;
+		width: 32px;
+
+		border: none;
+		outline: 0;
+		transition: background-color 0.3s;
+		background-color: #1f92ee;
+		border-radius: 4px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #1c5d99;
+		}
+
+		svg {
+			font-size: 1.5rem;
+			color: #fff;
+			stroke-width: 2px;
+		}
 	}
 `
