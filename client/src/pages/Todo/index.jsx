@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { FiPlus, FiChevronRight } from 'react-icons/fi'
+import { FiPlus, FiChevronRight, FiLogOut } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 import api from './../../services/api'
+import { getUser, logout } from './../../services/auth'
 
 import TodoItem from '../../components/TodoItem'
 import TodoList from '../../components/TodoList'
@@ -13,9 +14,8 @@ import {
 	BackButton,
 	AddButton,
 	BoxWithArrow,
+	UserInterface,
 } from './styles'
-
-import { getUser } from './../../services/auth'
 
 function Todo() {
 	const [lists, setLists] = useState([])
@@ -26,6 +26,11 @@ function Todo() {
 
 	function handleViewBox() {
 		setViewBox(!viewBox)
+	}
+
+	function handleLogout() {
+		logout()
+		window.location.reload()
 	}
 
 	useEffect(() => {
@@ -53,11 +58,16 @@ function Todo() {
 	return (
 		<StyledTodo>
 			<header>
-				<Link to='/'>
-					<BackButton strokeWidth='1.5px' />
-				</Link>
+				<div>
+					<Link to='/'>
+						<BackButton strokeWidth='1.5px' />
+					</Link>
+				</div>
 
-				<div>Hello {user.username ? user.username : 'User'}</div>
+				<UserInterface>
+					<h3>Hello {user.username ? user.username : 'User'}</h3>
+					<FiLogOut onClick={handleLogout} />
+				</UserInterface>
 
 				<div>
 					<AddButton onClick={handleViewBox}>

@@ -107,8 +107,44 @@ export const Message = styled.div`
 	font-style: italic;
 `
 
+export const UserInterface = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		svg {
+			color: #4f5165;
+
+			transform: translateX(13px);
+			transition: transform 0.3s;
+			/* transition */
+		}
+	}
+
+	h3 {
+		font-weight: 300;
+		font-size: 2rem;
+		margin: 0;
+	}
+
+	svg {
+		color: transparent;
+		margin-top: 5px;
+		stroke-width: 1.5px;
+		font-size: 1.5rem;
+		align-self: center;
+		cursor: pointer;
+
+		&:hover {
+			color: #aea3b0;
+		}
+	}
+`
+
 export const StyledTodo = styled.div`
 	width: 100%;
+	min-height: 100vh;
 	background-color: #f3f3f3;
 
 	header {
@@ -116,20 +152,13 @@ export const StyledTodo = styled.div`
 		font-size: 2rem;
 		padding: 0.8em 1em;
 		text-align: center;
-		font-weight: 300;
 		display: grid;
 		grid-template-rows: auto;
 		grid-template-columns: 1fr 3fr 1fr;
 
-		a {
+		div:first-child {
 			display: flex;
 			justify-content: flex-start;
-			align-items: center;
-		}
-
-		div:nth-child(2) {
-			display: flex;
-			justify-content: center;
 			align-items: center;
 		}
 
