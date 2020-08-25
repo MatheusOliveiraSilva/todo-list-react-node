@@ -26,9 +26,30 @@ const createList = async (req, res) => {
 	}
 }
 
+const renameList = async (req, res) => {
+	const { name: newName } = req.body
+
+	try {
+		const todoList = await TodoList.findById(req.params.id)
+
+		if (todoList.name === newName)
+			return res
+				.status(404)
+				.send('The new name must be different of the old one.')
+
+		todoList.name = newName
+
+		todoList.save()
+
+		res.send('List renamed')
+	} catch (err) {
+		res.send(err)
+	}
+}
+
 const deleteList = async (req, res) => {
 	try {
-		await TodoList.findOneAndRemove(req.params.id)
+		await TodoList.findByIdAndRemove(req.params.id)
 		res.send('List deleted successfully.')
 	} catch (err) {
 		res.send(err)
@@ -103,6 +124,7 @@ const renameTodo = async (req, res) => {
 module.exports = {
 	getAllLists,
 	createList,
+	renameList,
 	deleteList,
 	addTodo,
 	removeTodo,
