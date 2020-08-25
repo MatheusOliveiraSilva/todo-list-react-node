@@ -41,10 +41,9 @@ function Todo() {
 			setViewTaskForm(false)
 
 			setListStatus(false)
-			setLogoutStatus(false)
 			setTaskStatus(false)
 		})
-	}, [listStatus, logoutStatus, taskStatus])
+	}, [listStatus, taskStatus])
 
 	function handleViewBox() {
 		setViewBox(!viewBox)
