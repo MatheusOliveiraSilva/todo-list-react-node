@@ -2,6 +2,7 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	overflow-x: hidden;
 	margin: 0;
+	scroll-behavior: smooth;
 }
 
 a, a:link, a:hover {
