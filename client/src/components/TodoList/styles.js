@@ -17,6 +17,7 @@ export const ButtonAction = styled.button`
 	svg {
 		stroke-width: 2px;
 		color: #4f5165;
+		font-size: 1.5rem;
 
 		&:hover {
 			color: #aea3b0;

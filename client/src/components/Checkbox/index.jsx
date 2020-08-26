@@ -13,7 +13,7 @@ function Checkbox({ className, checked, ...props }) {
 		<CheckboxContainer className={className}>
 			<HiddenCheckbox checked={checked} {...props} />
 			<StyledCheckbox checked={checked}>
-				<CheckIcon size='1.4em' />
+				<CheckIcon />
 			</StyledCheckbox>
 		</CheckboxContainer>
 	)

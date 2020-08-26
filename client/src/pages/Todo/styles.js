@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
-import { FiArrowRight } from 'react-icons/fi'
+import { FiSidebar } from 'react-icons/fi'
 
-export const BackButton = styled(FiArrowRight)`
+export const SidebarButton = styled(FiSidebar)`
 	cursor: pointer;
 	color: #4f5165;
 	transition: color 0.3s;
+	stroke-width: 1.5px;
 
 	&:hover {
 		color: #aea3b0;
@@ -68,6 +69,7 @@ export const BoxWithArrow = styled.div`
 			color: #fff;
 			stroke-width: 2px;
 			transition: color 0.3s;
+			font-size: 1.75rem;
 
 			&:hover {
 				color: #bbcde5;
@@ -98,6 +100,8 @@ export const AddButton = styled.button`
 
 	svg {
 		margin-right: 5px;
+		font-size: 1.3rem;
+		stroke-width: 2.5px;
 	}
 `
 

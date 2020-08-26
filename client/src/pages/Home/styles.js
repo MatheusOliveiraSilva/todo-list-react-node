@@ -46,6 +46,10 @@ export const StyledHome = styled.div`
 
 				a {
 					background-color: #2364a0;
+
+					svg {
+						font-size: 1.9rem;
+					}
 				}
 			}
 

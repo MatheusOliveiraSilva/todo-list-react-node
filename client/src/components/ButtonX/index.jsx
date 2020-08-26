@@ -7,7 +7,7 @@ import { StyledButtonX } from './styles'
 function ButtonX({ route }) {
 	return (
 		<StyledButtonX to={route}>
-			<FiX size='1.5em' />
+			<FiX />
 		</StyledButtonX>
 	)
 }

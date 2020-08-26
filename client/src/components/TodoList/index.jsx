@@ -19,21 +19,15 @@ function TodoList({ children, name, id, handlers }) {
 				<h2>{name}</h2>
 				<ButtonGroup>
 					<ButtonAction>
-						<FiPlus
-							size='1.5em'
-							onClick={() => handleViewTaskForm(id, 'todo')}
-						/>
+						<FiPlus onClick={() => handleViewTaskForm(id, 'todo')} />
 					</ButtonAction>
 
 					<ButtonAction>
-						<FiEdit
-							size='1.5em'
-							onClick={() => handleViewTaskForm(id, 'list')}
-						/>
+						<FiEdit onClick={() => handleViewTaskForm(id, 'list')} />
 					</ButtonAction>
 
 					<ButtonAction>
-						<FiTrash2 size='1.5em' onClick={() => handleDeleteList(id)} />
+						<FiTrash2 onClick={() => handleDeleteList(id)} />
 					</ButtonAction>
 				</ButtonGroup>
 			</TodoListHeader>

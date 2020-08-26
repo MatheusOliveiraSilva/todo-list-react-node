@@ -19,7 +19,7 @@ function Home() {
 				<button>
 					<strong>Know more about the project</strong>
 					<a href={sourceProject} target='_blank' rel='noreferrer'>
-						<FiArrowRight size='1.9em' />
+						<FiArrowRight />
 					</a>
 				</button>
 			</main>

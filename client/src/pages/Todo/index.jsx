@@ -11,7 +11,7 @@ import TodoList from '../../components/TodoList'
 import {
 	StyledTodo,
 	Message,
-	BackButton,
+	SidebarButton,
 	AddButton,
 	BoxWithArrow,
 	UserInterface,
@@ -119,8 +119,9 @@ function Todo() {
 				<div>
 					<div>
 						<Link to='/'>
-							<BackButton strokeWidth='1.5px' />
+							<SidebarButton />
 						</Link>
+						{/* Sidebar */}
 					</div>
 
 					<UserInterface>
@@ -130,7 +131,7 @@ function Todo() {
 
 					<div>
 						<AddButton onClick={handleViewBox}>
-							<FiPlus size='1.3em' strokeWidth='2.5px' />
+							<FiPlus />
 							New list
 						</AddButton>
 
@@ -142,7 +143,7 @@ function Todo() {
 									onChange={e => setNewListName(e.target.value)}
 								/>
 								<button type='submit'>
-									<FiChevronRight size='1.75em' />
+									<FiChevronRight />
 								</button>
 							</form>
 						</BoxWithArrow>

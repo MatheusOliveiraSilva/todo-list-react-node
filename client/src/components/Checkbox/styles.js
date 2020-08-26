@@ -17,6 +17,7 @@ export const CheckIcon = styled(FiCheck)`
 	fill: none;
 	stroke: white;
 	stroke-width: 2px;
+	font-size: 1.4rem;
 `
 
 export const StyledCheckbox = styled.div`
