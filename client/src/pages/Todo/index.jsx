@@ -1,188 +1,213 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
 import { FiPlus, FiChevronRight, FiLogOut } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
 
 import api from './../../services/api'
 import { getUser, logout } from './../../services/auth'
 
 import TodoItem from '../../components/TodoItem'
 import TodoList from '../../components/TodoList'
+import Sidebar from '../../components/Sidebar'
+import OptionsBar from '../../components/OptionsBar'
 
 import {
-	StyledTodo,
-	Message,
-	SidebarButton,
-	AddButton,
-	BoxWithArrow,
-	UserInterface,
-	TaskForm,
+  StyledTodo,
+  Message,
+  SidebarButton,
+  AddButton,
+  BoxWithArrow,
+  UserInterface,
+  TaskForm,
 } from './styles'
 
 function Todo() {
-	const [lists, setLists] = useState([])
-	const [user, setUser] = useState({})
-	const [viewBox, setViewBox] = useState(false)
-	const [newListName, setNewListName] = useState('')
+  const [lists, setLists] = useState([])
+  const [user, setUser] = useState({})
+  const [viewBox, setViewBox] = useState(false)
+  const [newListName, setNewListName] = useState('')
 
-	const [onChangeTarget, setOnChangeTarget] = useState({})
+  const [onChangeTarget, setOnChangeTarget] = useState({})
 
-	const [viewTaskForm, setViewTaskForm] = useState(false)
-	const [globalInputString, setGlobalInputString] = useState('')
+  const [viewTaskForm, setViewTaskForm] = useState(false)
+  const [globalInputString, setGlobalInputString] = useState('')
 
-	const [listStatus, setListStatus] = useState(false)
-	const [taskStatus, setTaskStatus] = useState(false)
+  const [listStatus, setListStatus] = useState(false)
+  const [taskStatus, setTaskStatus] = useState(false)
 
-	useEffect(() => {
-		api.get('/todo').then(response => {
-			setLists(response.data)
-			console.log(response.data)
-			setUser(JSON.parse(getUser()))
+  const [viewSidebar, setViewSidebar] = useState(false)
 
-			setViewTaskForm(false)
+  const [checkedTasks, setCheckedTasks] = useState(0)
 
-			setListStatus(false)
-			setTaskStatus(false)
-		})
-	}, [listStatus, taskStatus])
+  const [innerViewOptionsBar, setInnerViewOptionsBar] = useState(true)
 
-	function handleViewBox() {
-		setViewBox(!viewBox)
-	}
+  useEffect(() => {
+    api.get('/todo').then(response => {
+      setLists(response.data)
+      console.log(response.data)
+      setUser(JSON.parse(getUser()))
 
-	function handleViewTaskForm(id, target) {
-		if (viewTaskForm === false) setGlobalInputString('')
+      setViewTaskForm(false)
+      setViewSidebar(false)
 
-		setViewTaskForm(!viewTaskForm)
-		setOnChangeTarget({ id, target })
-	}
+      setListStatus(false)
+      setTaskStatus(false)
+    })
+  }, [listStatus, taskStatus])
 
-	function handleLogout() {
-		logout()
-		window.location.reload()
-	}
+  const toggle = (fc, variable) => fc(!variable)
 
-	async function handleAddTask(e) {
-		e.preventDefault()
+  const handleViewOptionsBar = () => checkedTasks >= 1
 
-		const id = onChangeTarget.id
+  function handleViewTaskForm(id, target) {
+    if (viewTaskForm === false) setGlobalInputString('')
 
-		try {
-			await api.put(`/todo/add/${id}`, { task: globalInputString })
-			alert('Task added')
-			setTaskStatus(true)
-		} catch (err) {
-			alert(err)
-		}
-	}
+    setViewTaskForm(!viewTaskForm)
+    setOnChangeTarget({ id, target })
+  }
 
-	async function handleRenameList(e) {
-		e.preventDefault()
+  function handleLogout() {
+    logout()
+    window.location.reload()
+  }
 
-		const id = onChangeTarget.id
+  async function handleAddTask(e) {
+    e.preventDefault()
 
-		try {
-			await api.put(`/todo/${id}`, { name: globalInputString })
-			alert('List renamed')
-			setListStatus(true)
-		} catch (err) {
-			alert(err)
-		}
-	}
+    const id = onChangeTarget.id
 
-	async function handleNewList(e) {
-		e.preventDefault()
+    try {
+      await api.put(`/todo/add/${id}`, { task: globalInputString })
+      alert('Task added')
+      setTaskStatus(true)
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-		try {
-			await api.post('/todo', { name: newListName })
-			setListStatus(true)
-			setNewListName('')
-			alert('List created with success!')
-			handleViewBox()
-		} catch (err) {
-			alert(err)
-		}
-	}
+  async function handleRenameList(e) {
+    e.preventDefault()
 
-	async function handleDeleteList(id) {
-		try {
-			await api.delete(`/todo/${id}`)
-			setListStatus(true)
-			alert('List deleted')
-		} catch (err) {
-			alert(err)
-		}
-	}
+    const id = onChangeTarget.id
 
-	return (
-		<StyledTodo>
-			<header>
-				<div>
-					<div>
-						<Link to='/'>
-							<SidebarButton />
-						</Link>
-						{/* Sidebar */}
-					</div>
+    try {
+      await api.put(`/todo/${id}`, { name: globalInputString })
+      alert('List renamed')
+      setListStatus(true)
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-					<UserInterface>
-						<h3>Hello {user.username ? user.username : 'User'}</h3>
-						<FiLogOut onClick={handleLogout} />
-					</UserInterface>
+  async function handleNewList(e) {
+    e.preventDefault()
 
-					<div>
-						<AddButton onClick={handleViewBox}>
-							<FiPlus />
-							New list
-						</AddButton>
+    try {
+      await api.post('/todo', { name: newListName })
+      setListStatus(true)
+      setNewListName('')
+      alert('List created with success!')
+      toggle(setViewBox, viewBox)
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-						<BoxWithArrow visibility={viewBox ? 1 : 0}>
-							<form onSubmit={handleNewList}>
-								<input
-									type='text'
-									value={newListName}
-									onChange={e => setNewListName(e.target.value)}
-								/>
-								<button type='submit'>
-									<FiChevronRight />
-								</button>
-							</form>
-						</BoxWithArrow>
-					</div>
-				</div>
+  async function handleDeleteList(id) {
+    try {
+      await api.delete(`/todo/${id}`)
+      setListStatus(true)
+      alert('List deleted')
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-				<TaskForm
-					view={viewTaskForm ? 1 : 0}
-					onSubmit={
-						onChangeTarget.target === 'todo' ? handleAddTask : handleRenameList
-					}>
-					<input
-						type='text'
-						value={globalInputString}
-						onChange={e => setGlobalInputString(e.target.value)}
-					/>
-					<button>
-						<FiChevronRight />
-					</button>
-				</TaskForm>
-			</header>
+  return (
+    <StyledTodo>
+      <Sidebar view={viewSidebar} setView={setViewSidebar} />
 
-			<main>
-				{lists.map(list => (
-					<TodoList
-						key={list._id}
-						id={list._id}
-						name={list.name}
-						handlers={{ handleViewTaskForm, handleDeleteList }}>
-						{list.tasks.length === 0 ? (
-							<Message>Empty list</Message>
-						) : (
-								list.tasks.map(task => <TodoItem key={task} label={task} />)
-							)}
-					</TodoList>
-				))}
-			</main>
-		</StyledTodo>
-	)
+      <header>
+        <div>
+          <div>
+            <SidebarButton
+              onClick={() => toggle(setViewSidebar, viewSidebar)}
+            />
+          </div>
+
+          <UserInterface>
+            <h3>Hello {user.username ? user.username : 'User'}</h3>
+            <FiLogOut onClick={handleLogout} />
+          </UserInterface>
+
+          <div>
+            <AddButton onClick={() => toggle(setViewBox, viewBox)}>
+              <FiPlus />
+              New list
+            </AddButton>
+
+            <BoxWithArrow visibility={viewBox ? 1 : 0}>
+              <form onSubmit={handleNewList}>
+                <input
+                  type='text'
+                  value={newListName}
+                  onChange={e => setNewListName(e.target.value)}
+                />
+                <button type='submit'>
+                  <FiChevronRight />
+                </button>
+              </form>
+            </BoxWithArrow>
+          </div>
+        </div>
+
+        <TaskForm
+          view={viewTaskForm ? 1 : 0}
+          onSubmit={
+            onChangeTarget.target === 'todo' ? handleAddTask : handleRenameList
+          }>
+          <input
+            type='text'
+            value={globalInputString}
+            onChange={e => setGlobalInputString(e.target.value)}
+          />
+          <button>
+            <FiChevronRight />
+          </button>
+        </TaskForm>
+      </header>
+
+      <main>
+        {lists.map(list => (
+          <TodoList
+            key={list._id}
+            id={list._id}
+            name={list.name}
+            dependencies={{ handleViewTaskForm, handleDeleteList }}>
+            {list.tasks.length === 0
+              ? <Message>Empty list</Message>
+              : list.tasks.map(task => (
+                <TodoItem
+                  key={task}
+                  label={task}
+                  dependencies={{
+                    checkedTasks,
+                    setCheckedTasks,
+                    setInnerViewOptionsBar,
+                  }}
+                />
+              ))
+            }
+          </TodoList>
+        ))}
+      </main>
+
+      <OptionsBar
+        view={handleViewOptionsBar()}
+        innerView={innerViewOptionsBar}
+        setInnerView={setInnerViewOptionsBar}
+      />
+    </StyledTodo>
+  )
 }
 
 export default Todo
