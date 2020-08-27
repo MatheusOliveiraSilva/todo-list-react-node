@@ -185,6 +185,7 @@ function Todo() {
             dependencies={{ handleViewTaskForm, handleDeleteList }}>
             {list.tasks.length === 0
               ? <Message>Empty list</Message>
+
               : list.tasks.map(task => (
                 <TodoItem
                   key={task}
