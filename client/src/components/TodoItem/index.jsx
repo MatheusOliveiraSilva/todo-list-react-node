@@ -4,36 +4,49 @@ import PropTypes from 'prop-types'
 import { StyledTodoItem, Text } from './styles'
 import Checkbox from '../Checkbox'
 
-function TodoItem({ label, dependencies, ...rest }) {
-	const [checked, setChecked] = useState(false)
+function TodoItem({ label, listId, dependencies, ...rest }) {
+  const [checked, setChecked] = useState(false)
 
-	const { setCheckedTasks, checkedTasks, setInnerViewOptionsBar } = dependencies
+  const {
+    setCheckedTasks,
+    checkedTasks,
+    setInnerViewOptionsBar,
+    setListsOnChange,
+    listsOnChange,
+  } = dependencies
 
-	function handleCheckBoxChange(event) {
-		if (!event.target.checked) setCheckedTasks(checkedTasks - 1)
+  function handleCheckBoxChange(event) {
+    if (!event.target.checked) {
+      setCheckedTasks(checkedTasks.filter(task => task !== label))
+      setListsOnChange(listsOnChange.filter(id => id !== listId))
+    }
 
-		setChecked(event.target.checked)
+    setChecked(event.target.checked)
 
-		if (event.target.checked) {
-			setCheckedTasks(checkedTasks + 1)
-			setInnerViewOptionsBar(true)
-		}
-	}
+    if (event.target.checked) {
+      setCheckedTasks([...checkedTasks, label])
+      setInnerViewOptionsBar(true)
 
-	return (
-		<StyledTodoItem>
-			<Text status={checked}>{label}</Text>
+      if (!listsOnChange.includes(listId))
+        setListsOnChange([...listsOnChange, listId])
+    }
+  }
 
-			<label>
-				<Checkbox checked={checked} onChange={handleCheckBoxChange} {...rest} />
-			</label>
-		</StyledTodoItem>
-	)
+  return (
+    <StyledTodoItem>
+      <Text status={checked}>{label}</Text>
+
+      <label>
+        <Checkbox checked={checked} onChange={handleCheckBoxChange} {...rest} />
+      </label>
+    </StyledTodoItem>
+  )
 }
 
 TodoItem.propTypes = {
-	label: PropTypes.string.isRequired,
-	dependencies: PropTypes.object,
+  label: PropTypes.string.isRequired,
+  listId: PropTypes.string,
+  dependencies: PropTypes.object,
 }
 
 export default TodoItem
