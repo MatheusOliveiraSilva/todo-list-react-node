@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FiPlus, FiChevronRight, FiLogOut } from 'react-icons/fi'
 
 import api from './../../services/api'
@@ -36,9 +36,12 @@ function Todo() {
 
   const [viewSidebar, setViewSidebar] = useState(false)
 
-  const [checkedTasks, setCheckedTasks] = useState(0)
+  const [checkedTasks, setCheckedTasks] = useState([])
 
   const [innerViewOptionsBar, setInnerViewOptionsBar] = useState(true)
+  const [listsOnChange, setListsOnChange] = useState([])
+
+  const inputRef = useRef(null)
 
   useEffect(() => {
     api.get('/todo').then(response => {
@@ -56,13 +59,14 @@ function Todo() {
 
   const toggle = (fc, variable) => fc(!variable)
 
-  const handleViewOptionsBar = () => checkedTasks >= 1
+  const handleViewOptionsBar = () => checkedTasks.length >= 1
 
-  function handleViewTaskForm(id, target) {
+  function handleViewTaskForm(target, action, id = null) {
     if (viewTaskForm === false) setGlobalInputString('')
 
     setViewTaskForm(!viewTaskForm)
-    setOnChangeTarget({ id, target })
+    setOnChangeTarget({ id, target, action })
+    inputRef.current.focus()
   }
 
   function handleLogout() {
@@ -70,9 +74,7 @@ function Todo() {
     window.location.reload()
   }
 
-  async function handleAddTask(e) {
-    e.preventDefault()
-
+  async function handleAddTask() {
     const id = onChangeTarget.id
 
     try {
@@ -84,9 +86,7 @@ function Todo() {
     }
   }
 
-  async function handleRenameList(e) {
-    e.preventDefault()
-
+  async function handleRenameList() {
     const id = onChangeTarget.id
 
     try {
@@ -120,6 +120,59 @@ function Todo() {
     } catch (err) {
       alert(err)
     }
+  }
+
+  async function handleRenameTask() {
+    let oldName
+    let newName
+    let id
+
+    if (checkedTasks.length === 1 && listsOnChange.length === 1) {
+      oldName = checkedTasks[0]
+      newName = globalInputString
+      id = listsOnChange[0]
+    } else return alert('Has more than one task checked or list on change.')
+
+    try {
+      await api.put(`/todo/rename/${id}`, { oldName, newName })
+      setTaskStatus(true)
+      setInnerViewOptionsBar(false)
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  async function handleDeleteTask() {
+    let id
+    let tasks
+
+    console.log(listsOnChange)
+
+    if (listsOnChange.length === 1) {
+      id = listsOnChange[0]
+      tasks = checkedTasks
+      console.log(listsOnChange.length, checkedTasks.length, tasks)
+    }
+    else return alert('Has more than one list on change.')
+
+    setInnerViewOptionsBar(false)
+
+    try {
+      await api.put(`/todo/remove/${id}`, { tasks })
+      setTaskStatus(true)
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  function handleOnSubmitTaskForm(e) {
+    e.preventDefault()
+
+    const { target, action } = onChangeTarget
+
+    if (target === 'list' && action === 'rename') handleRenameList()
+    else if (target === 'todo' && action === 'add') handleAddTask()
+    else if (target === 'todo' && action === 'rename') handleRenameTask()
   }
 
   return (
@@ -162,12 +215,11 @@ function Todo() {
 
         <TaskForm
           view={viewTaskForm ? 1 : 0}
-          onSubmit={
-            onChangeTarget.target === 'todo' ? handleAddTask : handleRenameList
-          }>
+          onSubmit={handleOnSubmitTaskForm}>
           <input
             type='text'
             value={globalInputString}
+            ref={inputRef}
             onChange={e => setGlobalInputString(e.target.value)}
           />
           <button>
@@ -190,10 +242,13 @@ function Todo() {
                 <TodoItem
                   key={task}
                   label={task}
+                  listId={list._id}
                   dependencies={{
                     checkedTasks,
                     setCheckedTasks,
                     setInnerViewOptionsBar,
+                    setListsOnChange,
+                    listsOnChange
                   }}
                 />
               ))
@@ -206,6 +261,7 @@ function Todo() {
         view={handleViewOptionsBar()}
         innerView={innerViewOptionsBar}
         setInnerView={setInnerViewOptionsBar}
+        dependencies={{ handleViewTaskForm, handleDeleteTask }}
       />
     </StyledTodo>
   )
