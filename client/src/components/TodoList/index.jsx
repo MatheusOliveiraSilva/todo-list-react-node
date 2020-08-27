@@ -19,11 +19,11 @@ function TodoList({ children, name, id, dependencies }) {
         <h2>{name}</h2>
         <ButtonGroup>
           <ButtonAction>
-            <FiPlus onClick={() => handleViewTaskForm(id, 'todo')} />
+            <FiPlus onClick={() => handleViewTaskForm('todo', 'add', id)} />
           </ButtonAction>
 
           <ButtonAction>
-            <FiEdit onClick={() => handleViewTaskForm(id, 'list')} />
+            <FiEdit onClick={() => handleViewTaskForm('list', 'rename', id)} />
           </ButtonAction>
 
           <ButtonAction>
