@@ -13,67 +13,67 @@ import ButtonX from '../../components/ButtonX'
 import { StyledLogin } from './styles'
 
 function Login(props) {
-	// ursobear
-	// --> authorization routes react
+  // ursobear
+  // --> authorization routes react
 
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-	async function handleLogin(e) {
-		e.preventDefault()
+  async function handleLogin(e) {
+    e.preventDefault()
 
-		try {
-			const response = await api.post('user/authenticate', {
-				username,
-				password,
-			})
-			// retirar hash from response
-			const { token } = response.data
+    try {
+      const response = await api.post('user/authenticate', {
+        username,
+        password,
+      })
+      // retirar hash from response
+      const { token } = response.data
 
-			login(token, { username })
+      login(token, { username })
 
-			props.history.push('/app')
-			console.log('Logged')
-		} catch (err) {
-			alert(err)
-		}
-	}
+      props.history.push('/app')
+      console.log('Logged')
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-	return (
-		<StyledLogin>
-			<form onSubmit={handleLogin}>
-				<ButtonX route='/' />
+  return (
+    <StyledLogin>
+      <form onSubmit={handleLogin}>
+        <ButtonX route='/' />
 
-				<fieldset>
-					<legend>Login to Continue</legend>
+        <fieldset>
+          <legend>Login to Continue</legend>
 
-					<Input
-						label='Username'
-						name='username'
-						autoComplete='no'
-						autoFocus
-						value={username}
-						onChange={e => setUsername(e.target.value)}
-					/>
-					<Input
-						label='Password'
-						name='password'
-						type='password'
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-					/>
-				</fieldset>
+          <Input
+            label='Username'
+            name='username'
+            autoComplete='no'
+            autoFocus
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <Input
+            label='Password'
+            name='password'
+            type='password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </fieldset>
 
-				<RedirectButton route='/' label='Forgot Password?' />
+        <RedirectButton route='/' label='Forgot Password?' />
 
-				<Button type='submit'>Login</Button>
-			</form>
-		</StyledLogin>
-	)
+        <Button type='submit'>Login</Button>
+      </form>
+    </StyledLogin>
+  )
 }
 
 Login.propTypes = {
-	history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default withRouter(Login)

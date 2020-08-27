@@ -11,76 +11,76 @@ import ButtonX from '../../components/ButtonX/index.jsx'
 import { StyledCreateAccount, DoubleInputBlock } from './styles.js'
 
 function CreateAccount(props) {
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-	async function handleCreateAccount(e) {
-		e.preventDefault()
+  async function handleCreateAccount(e) {
+    e.preventDefault()
 
-		try {
-			await api.post('user/register', {
-				username,
-				password,
-			})
+    try {
+      await api.post('user/register', {
+        username,
+        password,
+      })
 
-			props.history.push('/')
-		} catch (err) {
-			alert(err)
-		}
-	}
+      props.history.push('/')
+    } catch (err) {
+      alert(err)
+    }
+  }
 
-	return (
-		<StyledCreateAccount>
-			<form onSubmit={handleCreateAccount}>
-				<ButtonX route='/' />
+  return (
+    <StyledCreateAccount>
+      <form onSubmit={handleCreateAccount}>
+        <ButtonX route='/' />
 
-				<fieldset>
-					<legend>Create a Account</legend>
+        <fieldset>
+          <legend>Create a Account</legend>
 
-					<DoubleInputBlock>
-						<Input
-							label='First Name'
-							name='first-name'
-							value={firstName}
-							onChange={e => setFirstName(e.target.value)}
-						/>
-						<Input
-							label='Last Name'
-							name='last-name'
-							value={lastName}
-							onChange={e => setLastName(e.target.value)}
-						/>
-					</DoubleInputBlock>
+          <DoubleInputBlock>
+            <Input
+              label='First Name'
+              name='first-name'
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            />
+            <Input
+              label='Last Name'
+              name='last-name'
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+            />
+          </DoubleInputBlock>
 
-					<Input
-						label='Username'
-						name='username'
-						autoComplete='no'
-						value={username}
-						onChange={e => setUsername(e.target.value)}
-					/>
+          <Input
+            label='Username'
+            name='username'
+            autoComplete='no'
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
 
-					<Input
-						label='Password'
-						name='password'
-						type='password'
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-					/>
-				</fieldset>
+          <Input
+            label='Password'
+            name='password'
+            type='password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </fieldset>
 
-				<RedirectButton route='/login' label='Already has a account? Log in' />
+        <RedirectButton route='/login' label='Already has a account? Log in' />
 
-				<Button type='submit'>Create a Account</Button>
-			</form>
-		</StyledCreateAccount>
-	)
+        <Button type='submit'>Create a Account</Button>
+      </form>
+    </StyledCreateAccount>
+  )
 }
 
 CreateAccount.propTypes = {
-	history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default withRouter(CreateAccount)

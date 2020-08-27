@@ -6,25 +6,25 @@ import PageHeader from '../../components/PageHeader'
 import { StyledHome } from './styles'
 
 export const sourceProject =
-	'https://github.com/MatheusOliveiraSilva/todo-list-react-node'
+  'https://github.com/MatheusOliveiraSilva/todo-list-react-node'
 
 function Home() {
-	return (
-		<StyledHome>
-			<PageHeader />
+  return (
+    <StyledHome>
+      <PageHeader />
 
-			<main>
-				<h1>Todo list App</h1>
-				<p>An app that creates list of todos to help yours daily needs.</p>
-				<button>
-					<strong>Know more about the project</strong>
-					<a href={sourceProject} target='_blank' rel='noreferrer'>
-						<FiArrowRight />
-					</a>
-				</button>
-			</main>
-		</StyledHome>
-	)
+      <main>
+        <h1>Todo list App</h1>
+        <p>An app that creates list of todos to help yours daily needs.</p>
+        <button>
+          <strong>Know more about the project</strong>
+          <a href={sourceProject} target='_blank' rel='noreferrer'>
+            <FiArrowRight />
+          </a>
+        </button>
+      </main>
+    </StyledHome>
+  )
 }
 
 export default Home
