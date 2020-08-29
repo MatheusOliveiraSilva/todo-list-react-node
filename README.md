@@ -4,7 +4,6 @@
 	<img alt='Framework' src='https://img.shields.io/badge/framework-react-blue?style=for-the-badge&logo=appveyor' >
 	<img alt='License' src='https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=appveyor' >
 	<img alt='Status' src='https://img.shields.io/badge/status-in%20development-yellow?style=for-the-badge&logo=appveyor' >
-
 </p>
 
 <p>
@@ -94,6 +93,11 @@ $ yarn start
 ```
 
 <h2 id='screenshot'> :point_right: Screenshots</h2>
+
+<img alt='Homepage' src='./.github/homepage.png' />
+<img alt='Empty list' src='./.github/empty_list.png' />
+<img alt='Tasks' src='./.github/tasks.png' />
+<img alt='Task selected' src='./.github/task_selected.png' />
 
 <h2 id='licenca'> :point_right: Licença</h2>
 
