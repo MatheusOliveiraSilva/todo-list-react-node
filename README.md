@@ -47,6 +47,19 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 Você vai precisar ter instalado em sua máquina as seguintes ferramentas: [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/) e [MongoDB](https://https://docs.mongodb.com/manual/installation/)
 
+<h3 id='environment'> :point_right: Configurando o ambiente </h3>
+
+<p>Vá até o arquivo .env.sample na pasta server e coloque suas próprias informações de ambiente, depois renomeie o arquivo para .env.</p>
+
+```
+JWT_PRIVATE_KEY=Your_private_key
+
+DB_NAME=Your_database_name
+DB_HOST=Your_database_host
+
+DB_PORT=The_port_you_want_that_the_server_runs (optional)
+```
+
 <h3 id='backend'> :point_right: Rodando o Back End (Servidor)</h3>
 
 ```bash
