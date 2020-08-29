@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-// export const XButton = styled.div``
-
 export const StyledLogin = styled.div`
   width: 100vw;
   height: 100vh;

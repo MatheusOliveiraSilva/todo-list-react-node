@@ -13,9 +13,6 @@ import ButtonX from '../../components/ButtonX'
 import { StyledLogin } from './styles'
 
 function Login(props) {
-  // ursobear
-  // --> authorization routes react
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -27,7 +24,6 @@ function Login(props) {
         username,
         password,
       })
-      // retirar hash from response
       const { token } = response.data
 
       login(token, { username })
