@@ -8,7 +8,9 @@ const app = express()
 
 require('dotenv').config()
 
-if (!process.env.JWT_PRIVATE_KEY) {
+const { JWT_PRIVATE_KEY, DB_NAME, DB_HOST } = process.env
+
+if (!JWT_PRIVATE_KEY) {
   console.error('FATAL ERROR: JWT_PRIVATE_KEY is not defined.')
   process.exit(1)
 }
@@ -20,17 +22,13 @@ app.use(express.json())
 app.use('/todo', todo)
 app.use('/user', user)
 
-app.get('/', (req, res) => {
-  res.send('Hello man')
-})
-
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
 }
 
-mongoose.connect('mongodb://localhost/todo-list-react-node', options)
+mongoose.connect(`mongodb://${DB_HOST}/${DB_NAME}`, options)
 
 const port = process.env.PORT || 9000
 
