@@ -62,9 +62,6 @@ $ cd server
 # Instale as dependências
 $ yarn install
 
-# Definir a chave secreta para encriptação
-$ export JWT_PRIVATE_KEY=suachavesecreta
-
 # Execute a aplicação em modo de desenvolvimento
 $ yarn dev
 
