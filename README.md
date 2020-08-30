@@ -57,8 +57,16 @@ JWT_PRIVATE_KEY=Your_private_key
 DB_NAME=Your_database_name
 DB_HOST=Your_database_host
 
-DB_PORT=The_port_you_want_that_the_server_runs (optional)
+API_PORT=The_port_you_want_that_the_api_runs (optional; default:9000)
 ```
+
+<p>Vá até o arquivo .env.sample na pasta client e coloque suas próprias informações de ambiente, depois renomeie o arquivo para .env.</p>
+
+```
+REACT_APP_API_URL=Your_api_url
+(remembers: the port here must be the same that .env in server folder)
+```
+
 
 <h3 id='backend'> :point_right: Rodando o Back End (Servidor)</h3>
 
