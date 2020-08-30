@@ -8,7 +8,7 @@ const app = express()
 
 require('dotenv').config()
 
-const { JWT_PRIVATE_KEY, DB_NAME, DB_HOST } = process.env
+const { JWT_PRIVATE_KEY, DB_NAME, DB_HOST, API_PORT } = process.env
 
 if (!JWT_PRIVATE_KEY) {
   console.error('FATAL ERROR: JWT_PRIVATE_KEY is not defined.')
@@ -30,6 +30,6 @@ const options = {
 
 mongoose.connect(`mongodb://${DB_HOST}/${DB_NAME}`, options)
 
-const port = process.env.PORT || 9000
+const port = API_PORT || 9000
 
 app.listen(port, () => console.log(`Server running on ${port}`))
