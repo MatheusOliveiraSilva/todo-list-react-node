@@ -11,9 +11,9 @@ Esse é uma aplicação web para testar os últimos conteúdos estudados e desaf
 </p>
 
 <h3 align='center'>
-	:construction: 
-	Projeto em Desenvolvimento 
-	:construction:
+	:heavy_check_mark:
+	Projeto Concluído 
+	:heavy_check_mark:
 </h3>
 
 ## :point_right: Tabela de conteúdos
